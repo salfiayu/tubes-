@@ -47,4 +47,26 @@ function analisis() {
       </tr>
     </table>
   `;
+  buatGrafik(timeIter, timeRec);
 }
+
+function buatGrafik(timeIter, timeRec) {
+  const canvas = document.getElementById("grafik");
+  const ctx = canvas.getContext("2d");
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const maxTime = Math.max(timeIter, timeRec);
+  const scale = 150 / maxTime;
+
+  // Iteratif
+  ctx.fillStyle = "#3498db";
+  ctx.fillRect(80, 180 - timeIter * scale, 50, timeIter * scale);
+  ctx.fillText("Iteratif", 80, 200);
+
+  // Rekursif
+  ctx.fillStyle = "#e74c3c";
+  ctx.fillRect(220, 180 - timeRec * scale, 50, timeRec * scale);
+  ctx.fillText("Rekursif", 220, 200);
+}
+
